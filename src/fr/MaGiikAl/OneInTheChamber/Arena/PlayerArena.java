@@ -143,6 +143,41 @@ public class PlayerArena {
 			bow2.setItemMeta(imbow);
 			arrow2.setItemMeta(imarrow);
 
+            net.minecraft.server.v1_9_R1.ItemStack nmsStack = CraftItemStack.asNMSCopy(sword2);
+            NBTTagCompound compound = (nmsStack.hasTag()) ? nmsStack.getTag() : new NBTTagCompound();
+           
+            NBTTagList modifiers = new NBTTagList();
+           
+            // -- attack damage
+            NBTTagCompound damage = new NBTTagCompound();
+            damage.set("AttributeName", new NBTTagString("generic.attackDamage"));
+            damage.set("Name", new NBTTagString("generic.attackDamage"));
+            damage.set("Amount", new NBTTagInt(6));
+            damage.set("Operation", new NBTTagInt(0));
+            damage.set("UUIDLeast", new NBTTagInt(894654));
+            damage.set("UUIDMost", new NBTTagInt(2872));
+            damage.set("Slot", new NBTTagString("mainhand"));
+           
+            // -- attack speed
+            NBTTagCompound speed = new NBTTagCompound();
+            speed.set("AttributeName", new NBTTagString("generic.attackSpeed"));
+            speed.set("Name", new NBTTagString("generic.attackSpeed"));
+            speed.set("Amount", new NBTTagDouble(1024));
+            speed.set("Operation", new NBTTagInt(0));
+            speed.set("UUIDLeast", new NBTTagInt(894654));
+            speed.set("UUIDMost", new NBTTagInt(2872));
+            speed.set("Slot", new NBTTagString("mainhand"));
+
+
+            // -- apply modifiers
+            modifiers.add(damage);
+            modifiers.add(speed);
+            compound.set("AttributeModifiers", modifiers);
+           
+            nmsStack.setTag(compound);
+			sword2 = CraftItemStack.asBukkitCopy(nmsStack);			
+
+
 			this.player.getInventory().setItem(0, sword2);
 			this.player.getInventory().setItem(1, bow2);
 			this.player.getInventory().setItem(2, arrow2);
@@ -166,6 +201,40 @@ public class PlayerArena {
 			sword2.setItemMeta(imsword);
 			bow2.setItemMeta(imbow);
 			arrow2.setItemMeta(imarrow);
+			
+			            net.minecraft.server.v1_9_R1.ItemStack nmsStack = CraftItemStack.asNMSCopy(sword2);
+            NBTTagCompound compound = (nmsStack.hasTag()) ? nmsStack.getTag() : new NBTTagCompound();
+           
+            NBTTagList modifiers = new NBTTagList();
+           
+            // -- attack damage
+            NBTTagCompound damage = new NBTTagCompound();
+            damage.set("AttributeName", new NBTTagString("generic.attackDamage"));
+            damage.set("Name", new NBTTagString("generic.attackDamage"));
+            damage.set("Amount", new NBTTagInt(6));
+            damage.set("Operation", new NBTTagInt(0));
+            damage.set("UUIDLeast", new NBTTagInt(894654));
+            damage.set("UUIDMost", new NBTTagInt(2872));
+            damage.set("Slot", new NBTTagString("mainhand"));
+           
+            // -- attack speed
+            NBTTagCompound speed = new NBTTagCompound();
+            speed.set("AttributeName", new NBTTagString("generic.attackSpeed"));
+            speed.set("Name", new NBTTagString("generic.attackSpeed"));
+            speed.set("Amount", new NBTTagDouble(1024));
+            speed.set("Operation", new NBTTagInt(0));
+            speed.set("UUIDLeast", new NBTTagInt(894654));
+            speed.set("UUIDMost", new NBTTagInt(2872));
+            speed.set("Slot", new NBTTagString("mainhand"));
+
+
+            // -- apply modifiers
+            modifiers.add(damage);
+            modifiers.add(speed);
+            compound.set("AttributeModifiers", modifiers);
+           
+            nmsStack.setTag(compound);
+			sword2 = CraftItemStack.asBukkitCopy(nmsStack);			
 
 			this.player.getInventory().setItem(0, sword2);
 			this.player.getInventory().setItem(1, bow2);
