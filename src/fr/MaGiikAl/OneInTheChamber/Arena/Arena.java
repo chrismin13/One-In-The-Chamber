@@ -460,7 +460,7 @@ public class Arena {
 			i++;
 			pa.loadGameInventory();
 
-			pa.playSound(Sound.WITHER_DEATH, 5F);
+			pa.playSound(Sound.ENTITY_WITHER_DEATH, 5F);
 		}
 		this.updateScores();
 		broadcast(Demarrage);
