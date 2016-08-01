@@ -257,6 +257,7 @@ public class PlayerArena {
 		this.player.teleport(ArenaManager.getArenaManager().getLobbyLocation());
 	}
 
+	@SuppressWarnings("deprecation")
 	public void clear(Objective obj){
 		if(obj != null){
 			obj.getScore(this.player).setScore(0);
@@ -310,6 +311,7 @@ public class PlayerArena {
 			e.printStackTrace();
 		}
 	}
+	@SuppressWarnings("deprecation")
 	public void setScoreboard(Objective obj){
 		obj.getScore(this.player).setScore(this.score);
 		Scoreboard board = obj.getScoreboard();

@@ -27,7 +27,6 @@ public class InventoryClick implements Listener{
 
 				new BukkitRunnable() {
 
-					@SuppressWarnings("deprecation")
 					@Override
 					public void run() {
 						p.updateInventory();

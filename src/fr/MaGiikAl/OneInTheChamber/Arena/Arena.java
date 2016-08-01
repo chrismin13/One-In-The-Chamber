@@ -199,7 +199,6 @@ public class Arena {
 		return false;
 	}
 
-	@SuppressWarnings("deprecation")
 	public void addPlayer(Player player){
 
 		File fichier_language = new File(OneInTheChamber.instance.getDataFolder() + File.separator + "Language.yml");
@@ -272,7 +271,6 @@ public class Arena {
 		}
 	}
 
-	@SuppressWarnings("deprecation")
 	public void removePlayer(Player player, String pourJoueur, String pourJoueursArene){
 		if(ArenaManager.getArenaManager().isInArena(player)){
 			PlayerArena pa = PlayerArena.getPlayerArenaByPlayer(player);

@@ -21,7 +21,6 @@ public class BlockPlace implements Listener{
 			e.setCancelled(true);
 
 			new BukkitRunnable() {
-				@SuppressWarnings("deprecation")
 				@Override
 				public void run() {
 					p.updateInventory();

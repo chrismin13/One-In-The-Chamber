@@ -39,7 +39,6 @@ public class InventorySaver {
 
 	}
 
-	@SuppressWarnings("deprecation")
 	public static void restorePlayerInventory(final Player p){
 
 		String pn = p.getName();
@@ -59,7 +58,6 @@ public class InventorySaver {
 		
 	}
 
-	@SuppressWarnings("deprecation")
 	public static void clearPlayerInventory(final Player p){
 		p.getInventory().clear();
 		p.getInventory().setArmorContents(null);

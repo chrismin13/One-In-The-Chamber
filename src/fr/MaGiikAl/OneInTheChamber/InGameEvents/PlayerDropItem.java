@@ -12,7 +12,6 @@ import fr.MaGiikAl.OneInTheChamber.Main.OneInTheChamber;
 
 public class PlayerDropItem implements Listener{
 
-	@SuppressWarnings("deprecation")
 	@EventHandler(priority = EventPriority.LOWEST)
 	public void onPlayerDropItem(PlayerDropItemEvent e){
 
