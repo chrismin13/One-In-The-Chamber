@@ -17,6 +17,7 @@ import fr.MaGiikAl.OneInTheChamber.Arena.ArenaManager;
 import fr.MaGiikAl.OneInTheChamber.Commands.MyCommandExecutor;
 import fr.MaGiikAl.OneInTheChamber.InGameEvents.BlockBreak;
 import fr.MaGiikAl.OneInTheChamber.InGameEvents.BlockPlace;
+import fr.MaGiikAl.OneInTheChamber.InGameEvents.DoubleJump;
 import fr.MaGiikAl.OneInTheChamber.InGameEvents.EntityDamage;
 import fr.MaGiikAl.OneInTheChamber.InGameEvents.EntityDamageByEntity;
 import fr.MaGiikAl.OneInTheChamber.InGameEvents.FoodLevelChange;
@@ -95,6 +96,7 @@ public class OneInTheChamber extends JavaPlugin implements Listener{
 		pm.registerEvents(new PlayerClick(), this);
 		pm.registerEvents(new PlayerChat(), this);
 		pm.registerEvents(new PlayerMove(), this);
+		pm.registerEvents(new DoubleJump(), this);
 	}
 
 	public void loadConfiguration(){
@@ -309,4 +311,5 @@ public class OneInTheChamber extends JavaPlugin implements Listener{
 			}
 		}
 	}
+	
 }

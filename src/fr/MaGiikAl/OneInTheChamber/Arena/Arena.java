@@ -280,6 +280,10 @@ public class Arena {
 			pa.restore();
 			pa.getPlayer().updateInventory();
 
+			//Remove flight by doublejump
+			player.setAllowFlight(false);
+			player.setFlying(false);
+			
 			pa.teleportToLobby();
 
 			if(!pourJoueur.isEmpty()){
