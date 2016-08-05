@@ -132,7 +132,7 @@ public class PlayerArena {
 
 			ItemStack sword2 = new ItemStack(Material.STONE_SWORD);
 			ItemStack bow2 = new ItemStack(Material.BOW);
-			ItemStack arrow2 = new ItemStack(Material.ARROW);
+			ItemStack arrow2 = new ItemStack(Material.SPECTRAL_ARROW);
 
 			ItemMeta imredstone = redstone2.getItemMeta();
 			ItemMeta imsword = sword2.getItemMeta();
@@ -194,7 +194,7 @@ public class PlayerArena {
 
 			ItemStack sword2 = new ItemStack(Material.STONE_SWORD);
 			ItemStack bow2 = new ItemStack(Material.BOW);
-			ItemStack arrow2 = new ItemStack(Material.ARROW);
+			ItemStack arrow2 = new ItemStack(Material.SPECTRAL_ARROW);
 
 			ItemMeta imsword = sword2.getItemMeta();
 			ItemMeta imbow = bow2.getItemMeta();
@@ -286,7 +286,7 @@ public class PlayerArena {
 
 		String arrow = UtilChatColor.colorizeString(Language.getString("Language.Stuff.Arrow"));
 
-		ItemStack arrows = new ItemStack(Material.ARROW);
+		ItemStack arrows = new ItemStack(Material.SPECTRAL_ARROW);
 		ItemMeta imarrow = arrows.getItemMeta();
 		imarrow.setDisplayName(arrow);
 		arrows.setItemMeta(imarrow);
