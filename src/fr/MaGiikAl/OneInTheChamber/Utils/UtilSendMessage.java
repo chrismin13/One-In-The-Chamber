@@ -17,6 +17,10 @@ public class UtilSendMessage {
 		
 		String prefixe = UtilChatColor.colorizeString(Language.getString("Language.Prefix"));
 		
-		player.sendMessage(prefixe + " " + UtilChatColor.colorizeString(message));
+//		player.sendMessage(prefixe + " " + UtilChatColor.colorizeString(message));
+		
+        Actionbar actionBar = new Actionbar(prefixe + " " + UtilChatColor.colorizeString(message));
+        actionBar.sendToPlayer(player);
+		
 	}
 }
