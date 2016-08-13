@@ -2,6 +2,7 @@ package fr.MaGiikAl.OneInTheChamber.InGameEvents;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Random;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -32,34 +33,13 @@ public class PlayerDeath implements Listener{
 
 			if(ArenaManager.getArenaManager().isInArena(player)){
 
-				new BukkitRunnable() {
-					@Override
-					public void run() {
-						try {
-							Object nmsPlayer = player.getClass().getMethod("getHandle").invoke(player);
-							Object packet = Class.forName(nmsPlayer.getClass().getPackage().getName() + ".PacketPlayInClientCommand").newInstance();
-							Class<?> enumClass = Class.forName(nmsPlayer.getClass().getPackage().getName() + ".EnumClientCommand");
-
-							for(Object ob : enumClass.getEnumConstants()){
-								if(ob.toString().equals("PERFORM_RESPAWN")){
-									packet = packet.getClass().getConstructor(enumClass).newInstance(ob);
-								}
-							}
-
-							Object con = nmsPlayer.getClass().getField("playerConnection").get(nmsPlayer);
-							con.getClass().getMethod("a", packet.getClass()).invoke(con, packet);
-						}
-						catch(Throwable t){
-							t.printStackTrace();
-						}
-					}
-				}.runTaskLater(OneInTheChamber.instance, 2L);
-
 				Arena arena = ArenaManager.getArenaManager().getArenaByPlayer(player);
 
 				if(arena.getStatus() == Status.INGAME){
 
 					PlayerArena pa = PlayerArena.getPlayerArenaByPlayer(player);
+					
+					player.setHealth(20);
 
 					e.setDeathMessage("");
 					e.getDrops().removeAll(e.getDrops());
@@ -72,6 +52,46 @@ public class PlayerDeath implements Listener{
 
 						File fichier_language = new File(OneInTheChamber.instance.getDataFolder() + File.separator + "Language.yml");
 						FileConfiguration Language = YamlConfiguration.loadConfiguration(fichier_language);
+
+						final String PartiePerdue = UtilChatColor.colorizeString(Language.getString("Language.Arena.Player_lost"));
+
+						if(ArenaManager.getArenaManager().isInArena(player)){
+
+							if(arena.getStatus() == Status.INGAME){
+
+								new BukkitRunnable() {
+									@Override
+									public void run() {
+
+										if(pa.getLives() < 1){
+
+											String JoueurAPerdu = UtilChatColor.colorizeString(Language.getString("Language.Arena.Broadcast_player_lost")).replaceAll("%player", player.getName());
+
+											arena.removePlayer(player, PartiePerdue, JoueurAPerdu);
+
+										}else{
+											Random rand = new Random();
+											int nbAlea = rand.nextInt(arena.getSpawnsLocations().size());
+
+											pa.getPlayer().teleport(arena.getSpawnsLocations().get(nbAlea));
+											pa.loadGameInventory();
+											pa.getArena().updateScores();
+										}
+
+									}
+								}.runTaskLater(OneInTheChamber.instance, 1L);
+
+							}else if(arena.getStatus() == Status.STARTING || arena.getStatus() == Status.JOINABLE){
+
+								new BukkitRunnable() {
+									@Override
+									public void run() {
+										player.teleport(arena.getStartLocation());
+									}
+								}.runTaskLater(OneInTheChamber.instance, 1L);
+
+							}
+						}
 
 						if(player.getKiller().getName() != player.getName()){
 
