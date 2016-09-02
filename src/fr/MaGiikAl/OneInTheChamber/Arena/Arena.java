@@ -364,9 +364,9 @@ public class Arena {
 		arenaFile.set("CountdownBeforeStart", this.countdownBeforeStart);
 		arenaFile.set("PrivateChat", this.privateChat);
 
-		if(this.startLocation != null){
+		if(this.startLocation == null){
 			arenaFile.set("StartLocation", this.startLocation.getWorld().getName() + ", " + this.startLocation.getX() + ", " + this.startLocation.getY() + ", " + this.startLocation.getZ() + ", " + this.startLocation.getYaw() + ", " + this.startLocation.getPitch());
-		}else{
+		}else {
 			arenaFile.set("StartLocation", "");
 		}
 
@@ -462,7 +462,7 @@ public class Arena {
 			i++;
 			pa.loadGameInventory();
 
-			pa.playSound(Sound.ENTITY_WITHER_DEATH, 5F);
+			pa.playSound(Sound.ENTITY_WITHER_DEATH, 1.0F);
 		}
 		this.updateScores();
 		broadcast(Demarrage);

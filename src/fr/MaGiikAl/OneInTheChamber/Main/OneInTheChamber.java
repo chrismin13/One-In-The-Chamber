@@ -5,10 +5,6 @@ import java.io.IOException;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -35,11 +31,9 @@ import fr.MaGiikAl.OneInTheChamber.Sign.SignBreak;
 import fr.MaGiikAl.OneInTheChamber.Sign.SignChange;
 import fr.MaGiikAl.OneInTheChamber.Sign.SignManager;
 import fr.MaGiikAl.OneInTheChamber.Utils.Updater;
-import fr.MaGiikAl.OneInTheChamber.Utils.UtilSendMessage;
-import fr.MaGiikAl.OneInTheChamber.Utils.Updater.UpdateResult;
 import fr.MaGiikAl.OneInTheChamber.Utils.Updater.UpdateType;
 
-public class OneInTheChamber extends JavaPlugin implements Listener{
+public class OneInTheChamber extends JavaPlugin{
 
 	public static JavaPlugin instance;
 
@@ -78,7 +72,6 @@ public class OneInTheChamber extends JavaPlugin implements Listener{
 	public void registerEvents(){
 		PluginManager pm = getServer().getPluginManager();
 
-		pm.registerEvents(this, this);
 		pm.registerEvents(new PlayerDeath(), this);		
 		pm.registerEvents(new PlayerQuit(), this);		
 		pm.registerEvents(new PlayerRespawn(), this);		
@@ -293,23 +286,4 @@ public class OneInTheChamber extends JavaPlugin implements Listener{
 	public static OneInTheChamber getInstance(){
 		return (OneInTheChamber) instance;
 	}
-
-	@EventHandler
-	public void onPlayerJoin(PlayerJoinEvent e){
-
-		File fichier_language = new File(OneInTheChamber.instance.getDataFolder() + File.separator + "Language.yml");
-		FileConfiguration Language = YamlConfiguration.loadConfiguration(fichier_language);
-
-		Player p = e.getPlayer();
-		if(p.hasPermission("oitc.update")){
-			Updater updater = update(UpdateType.NO_DOWNLOAD, false);
-			if(updater.getResult() == UpdateResult.UPDATE_AVAILABLE){
-				String updateAvailable = Language.getString("Language.Updater.Update_available");
-				UtilSendMessage.sendMessage(p, updateAvailable);
-			}else{
-				return;
-			}
-		}
-	}
-	
 }

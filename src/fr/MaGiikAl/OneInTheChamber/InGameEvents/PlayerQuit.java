@@ -29,7 +29,6 @@ public class PlayerQuit implements Listener{
 			String QuitteArene = UtilChatColor.colorizeString(Language.getString("Language.Arena.Leave"));
 			String JoueurQuitteArene = UtilChatColor.colorizeString(Language.getString("Language.Arena.Broadcast_leave")).replaceAll("%player", p.getName());
 
-			e.setQuitMessage("");
 			Arena arena = ArenaManager.getArenaManager().getArenaByPlayer(p);
 			arena.removePlayer(p, QuitteArene, JoueurQuitteArene);
 

@@ -11,7 +11,7 @@ import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.craftbukkit.v1_9_R1.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_10_R1.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -23,11 +23,11 @@ import fr.MaGiikAl.OneInTheChamber.Main.OneInTheChamber;
 import fr.MaGiikAl.OneInTheChamber.Utils.InventorySaver;
 import fr.MaGiikAl.OneInTheChamber.Utils.UtilChatColor;
 import fr.MaGiikAl.OneInTheChamber.Utils.UtilSendMessage;
-import net.minecraft.server.v1_9_R1.NBTTagCompound;
-import net.minecraft.server.v1_9_R1.NBTTagDouble;
-import net.minecraft.server.v1_9_R1.NBTTagInt;
-import net.minecraft.server.v1_9_R1.NBTTagList;
-import net.minecraft.server.v1_9_R1.NBTTagString;
+import net.minecraft.server.v1_10_R1.NBTTagCompound;
+import net.minecraft.server.v1_10_R1.NBTTagDouble;
+import net.minecraft.server.v1_10_R1.NBTTagInt;
+import net.minecraft.server.v1_10_R1.NBTTagList;
+import net.minecraft.server.v1_10_R1.NBTTagString;
 
 public class PlayerArena {
 
@@ -149,7 +149,7 @@ public class PlayerArena {
 			bow2.setItemMeta(imbow);
 			arrow2.setItemMeta(imarrow);
 
-            net.minecraft.server.v1_9_R1.ItemStack nmsStack = CraftItemStack.asNMSCopy(sword2);
+            net.minecraft.server.v1_10_R1.ItemStack nmsStack = CraftItemStack.asNMSCopy(sword2);
             NBTTagCompound compound = (nmsStack.hasTag()) ? nmsStack.getTag() : new NBTTagCompound();
            
             NBTTagList modifiers = new NBTTagList();
@@ -208,7 +208,7 @@ public class PlayerArena {
 			bow2.setItemMeta(imbow);
 			arrow2.setItemMeta(imarrow);
 			
-			            net.minecraft.server.v1_9_R1.ItemStack nmsStack = CraftItemStack.asNMSCopy(sword2);
+			            net.minecraft.server.v1_10_R1.ItemStack nmsStack = CraftItemStack.asNMSCopy(sword2);
             NBTTagCompound compound = (nmsStack.hasTag()) ? nmsStack.getTag() : new NBTTagCompound();
            
             NBTTagList modifiers = new NBTTagList();

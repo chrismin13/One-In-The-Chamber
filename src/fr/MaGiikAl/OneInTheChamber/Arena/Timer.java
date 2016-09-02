@@ -39,7 +39,7 @@ public class Timer extends BukkitRunnable{
 
 				if(countdown <= 5){
 					for(PlayerArena pa : this.arena.getPlayers()){
-						pa.playSound(Sound.BLOCK_GLASS_BREAK, 5F);
+						pa.playSound(Sound.BLOCK_GLASS_BREAK, 1.0F);;
 					}
 				}
 				countdown--;
