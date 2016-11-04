@@ -3,6 +3,7 @@ package fr.MaGiikAl.OneInTheChamber.Main;
 import java.io.File;
 import java.io.IOException;
 
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.PluginManager;
@@ -44,12 +45,15 @@ public class OneInTheChamber extends JavaPlugin{
 
 		loadConfiguration();
 
-		ArenaManager.loadArenas();
-		SignManager.loadSigns();
-		if(ArenaManager.getArenaManager().getArenas() != null){
-			for(Arena arena : ArenaManager.getArenaManager().getArenas()){
-				SignManager.updateSigns(arena);
-			}
+		try {
+		loadStuffThatCanError();
+		} catch(NullPointerException e) {
+			Bukkit.getScheduler().scheduleSyncDelayedTask(instance, new Runnable() {
+				@Override
+				public void run() {
+				loadStuffThatCanError();
+				}
+			}, 20L);
 		}
 
 		getCommand("oitc").setExecutor(new MyCommandExecutor());
@@ -61,6 +65,16 @@ public class OneInTheChamber extends JavaPlugin{
 		if(getConfig().getBoolean("auto-update") == true){
 			new Updater(this, 77090, this.getFile(), UpdateType.DEFAULT, true);
 		}
+	}
+
+	private void loadStuffThatCanError() {
+		ArenaManager.loadArenas();
+		SignManager.loadSigns();
+		if(ArenaManager.getArenaManager().getArenas() != null){
+			for(Arena arena : ArenaManager.getArenaManager().getArenas()){
+				SignManager.updateSigns(arena);
+			}
+		}		
 	}
 
 	public void onDisable() {
